@@ -1,0 +1,16 @@
+id
+appHubAppName
+0
+content_name.txt
+class
+discount_pct
+0
+content_discount.txt
+class
+discount_final_price
+data-price-final
+content_final_price.txt
+class
+discount_original_price
+0
+content_original_price.txt

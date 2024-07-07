@@ -1,0 +1,15 @@
+span
+class
+__discount
+span
+class
+__final-price
+img
+class
+product-img
+li
+class
+product-name
+span
+class
+__base-price
