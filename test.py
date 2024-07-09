@@ -223,8 +223,8 @@ def get_content_from_url(link_list, selector, value, data, path):
                   response.status_code}")
 
 
-selector_value_list = read_file_to_list("pythontest\\name\\selector_value.txt")
-selectorValue = []
+# selector_value_list = read_file_to_list("pythontest\\name\\selector_value.txt")
+# selectorValue = []
 
 # for i in range(0, len(selector_value_list), 4):
 #     selectorValue.append((selector_value_list[i], selector_value_list[i+1], selector_value_list[i+2], selector_value_list[i+3]))
@@ -519,3 +519,38 @@ def translate_html_content(html_content, src_lang='en', dest_lang='vi'):
 #     file.write(translated_html_content)
 
 # print(f'File đã được dịch và lưu tại: {output_file_path}')
+
+
+lastest_chromium_url = "https://commondatastorage.googleapis.com/chromium-browser-snapshots/Win_x64/LAST_CHANGE"
+try:
+    response = requests.get(lastest_chromium_url)
+    if response.status_code == 200:
+        lastest_version = response.text  # Lấy nội dung của file txt từ phản hồi
+    else:
+        print(f"Failed to retrieve file. Status code: {response.status_code}")
+except requests.exceptions.RequestException as e:
+    print(f"Error fetching file: {e}")
+
+__chromium_revision__ = lastest_version
+
+# DEFAULT_DOWNLOAD_HOST = 'https://storage.googleapis.com'
+DEFAULT_DOWNLOAD_HOST = 'https://commondatastorage.googleapis.com'
+DOWNLOAD_HOST = os.environ.get('PYPPETEER_DOWNLOAD_HOST', DEFAULT_DOWNLOAD_HOST)
+BASE_URL = f'{DOWNLOAD_HOST}/chromium-browser-snapshots'
+
+REVISION = os.environ.get('PYPPETEER_CHROMIUM_REVISION', __chromium_revision__)
+
+NO_PROGRESS_BAR = os.environ.get('PYPPETEER_NO_PROGRESS_BAR', '')
+if NO_PROGRESS_BAR.lower() in ('1', 'true'):
+    NO_PROGRESS_BAR = True  # type: ignore
+
+windowsArchive = 'chrome-win'
+
+downloadURLs = {
+    'linux': f'{BASE_URL}/Linux_x64/{REVISION}/chrome-linux.zip',
+    'mac': f'{BASE_URL}/Mac/{REVISION}/chrome-mac.zip',
+    'win32': f'{BASE_URL}/Win/{REVISION}/{windowsArchive}.zip',
+    'win64': f'{BASE_URL}/Win_x64/{REVISION}/{windowsArchive}.zip',
+}
+
+print(downloadURLs)
