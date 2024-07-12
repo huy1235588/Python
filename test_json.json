@@ -1,0 +1,30 @@
+{
+    "settings": {
+        "dns": 3,
+        "primary": "",
+        "secondary": ""
+    },
+    "dns_list": [
+        {
+            "name": "- Default DNS",
+            "primary": "127.0.0.53",
+            "secondary": "",
+            "primary_ipv6": "::1",
+            "secondary_ipv6": ""
+        }
+    ],
+    "interfaces_name": [
+        {
+            "name": "Wi-Fi",
+            "state": "Disconnected"
+        },
+        {
+            "name": "VPN - VPN Client",
+            "state": "Disconnected"
+        },
+        {
+            "name": "Ethernet",
+            "state": "Connected"
+        }
+    ]
+}

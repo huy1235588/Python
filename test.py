@@ -9,6 +9,8 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 import time
 import urllib.parse
+import subprocess
+import json
 
 
 def rgba_to_rgb(hex_color):
@@ -521,36 +523,75 @@ def translate_html_content(html_content, src_lang='en', dest_lang='vi'):
 # print(f'File đã được dịch và lưu tại: {output_file_path}')
 
 
-lastest_chromium_url = "https://commondatastorage.googleapis.com/chromium-browser-snapshots/Win_x64/LAST_CHANGE"
-try:
-    response = requests.get(lastest_chromium_url)
-    if response.status_code == 200:
-        lastest_version = response.text  # Lấy nội dung của file txt từ phản hồi
-    else:
-        print(f"Failed to retrieve file. Status code: {response.status_code}")
-except requests.exceptions.RequestException as e:
-    print(f"Error fetching file: {e}")
+# lastest_chromium_url = "https://commondatastorage.googleapis.com/chromium-browser-snapshots/Win_x64/LAST_CHANGE"
+# try:
+#     response = requests.get(lastest_chromium_url)
+#     if response.status_code == 200:
+#         lastest_version = response.text  # Lấy nội dung của file txt từ phản hồi
+#     else:
+#         print(f"Failed to retrieve file. Status code: {response.status_code}")
+# except requests.exceptions.RequestException as e:
+#     print(f"Error fetching file: {e}")
 
-__chromium_revision__ = lastest_version
+# __chromium_revision__ = lastest_version
 
-# DEFAULT_DOWNLOAD_HOST = 'https://storage.googleapis.com'
-DEFAULT_DOWNLOAD_HOST = 'https://commondatastorage.googleapis.com'
-DOWNLOAD_HOST = os.environ.get('PYPPETEER_DOWNLOAD_HOST', DEFAULT_DOWNLOAD_HOST)
-BASE_URL = f'{DOWNLOAD_HOST}/chromium-browser-snapshots'
+# # DEFAULT_DOWNLOAD_HOST = 'https://storage.googleapis.com'
+# DEFAULT_DOWNLOAD_HOST = 'https://commondatastorage.googleapis.com'
+# DOWNLOAD_HOST = os.environ.get('PYPPETEER_DOWNLOAD_HOST', DEFAULT_DOWNLOAD_HOST)
+# BASE_URL = f'{DOWNLOAD_HOST}/chromium-browser-snapshots'
 
-REVISION = os.environ.get('PYPPETEER_CHROMIUM_REVISION', __chromium_revision__)
+# REVISION = os.environ.get('PYPPETEER_CHROMIUM_REVISION', __chromium_revision__)
 
-NO_PROGRESS_BAR = os.environ.get('PYPPETEER_NO_PROGRESS_BAR', '')
-if NO_PROGRESS_BAR.lower() in ('1', 'true'):
-    NO_PROGRESS_BAR = True  # type: ignore
+# NO_PROGRESS_BAR = os.environ.get('PYPPETEER_NO_PROGRESS_BAR', '')
+# if NO_PROGRESS_BAR.lower() in ('1', 'true'):
+#     NO_PROGRESS_BAR = True  # type: ignore
 
-windowsArchive = 'chrome-win'
+# windowsArchive = 'chrome-win'
 
-downloadURLs = {
-    'linux': f'{BASE_URL}/Linux_x64/{REVISION}/chrome-linux.zip',
-    'mac': f'{BASE_URL}/Mac/{REVISION}/chrome-mac.zip',
-    'win32': f'{BASE_URL}/Win/{REVISION}/{windowsArchive}.zip',
-    'win64': f'{BASE_URL}/Win_x64/{REVISION}/{windowsArchive}.zip',
-}
+# downloadURLs = {
+#     'linux': f'{BASE_URL}/Linux_x64/{REVISION}/chrome-linux.zip',
+#     'mac': f'{BASE_URL}/Mac/{REVISION}/chrome-mac.zip',
+#     'win32': f'{BASE_URL}/Win/{REVISION}/{windowsArchive}.zip',
+#     'win64': f'{BASE_URL}/Win_x64/{REVISION}/{windowsArchive}.zip',
+# }
 
-print(downloadURLs)
+# print(downloadURLs)
+
+
+def get_netsh_interfaces():
+    result = subprocess.run(
+        ['netsh', 'interface', 'show', 'interface'], capture_output=True, text=True)
+    lines = result.stdout.splitlines()
+    interfaces = []
+    for line in lines[3:]:  # Starting from the fourth line where interface details begin
+        parts = line.split("  ")
+        # print(parts)
+        if parts != [""]:
+            interface_name = parts[-1]
+            state = parts[4]
+            interfaces.append({"name": interface_name, "state": state})
+
+    return interfaces
+
+
+def update_json_file(json_file):
+    # Load existing JSON data
+    with open(json_file, 'r') as f:
+        data = json.load(f)
+
+    # Get interfaces from netsh
+    interfaces = get_netsh_interfaces()
+
+    # Add interfaces to dns_list
+    data['interfaces'] = interfaces
+
+    # print(data['interfaces'])
+    # Write back to the JSON file
+    with open(json_file, 'w') as f:
+        json.dump(data, f, indent=4)
+
+
+# json_file = 'PyQT/utils/data.json'
+
+# update_json_file(json_file)
+# get_netsh_interfaces()
