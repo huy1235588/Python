@@ -33,23 +33,8 @@ phase_2_check = "Phase 2"
 def getDateTime(link_url):
     response = requests.get(link_url)
 
-    # session = HTMLSession()
-    # response = session.get(link_url)
-    # response.html.render()
-
-    # driver_path = "chromedriver/chromedriver.exe"
-    # service = Service(driver_path)
-    # driver = webdriver.Chrome(service=service)
-    # driver.get(link_url)
-    # html_content = driver.page_source
-    # driver.quit()
-
     soup = BeautifulSoup(response.content, 'html.parser')
 
-    # current_datetime = soup.find(id="dd")
-    # current_datetime = soup.find(id="ctdat")
-    # current_datetime_id = soup.find(id="668ace5ee6e2f")
-    # current_datetime = soup.find("div", {"class", "date"})
     current_datetime_class = soup.find("div", {"class", "s86_hd"})
     current_datetime_class_tb = current_datetime_class.find("div", {
         "class", "tb"})
@@ -76,6 +61,8 @@ def convert_current_to_datetime(date_str):
     return date_obj
 
 # Convert datetime for current but no weekday
+
+
 def convert_current_to_datetime_no_weekday(date_str):
     # Định dạng của chuỗi ngày tháng, vd: "28 June 2024"
     date_format = "%d %B %Y"
@@ -104,7 +91,8 @@ def checkPhase(link_url):
         if phase_2_check in game8_phare_text:
             # Time phase 2
             table = game8_phare.find_next_sibling("table")
-            phase_2_datetime_text = table.find("td").get_text().split(" - ")[0]
+            phase_2_datetime_text = table.find(
+                "td").get_text().split(" - ")[0].strip()
             phase_2_datetime = convert_phase_2_to_datetime(
                 phase_2_datetime_text)
             # Time current
@@ -113,3 +101,5 @@ def checkPhase(link_url):
             # Compare phase 2 time And current time
             compare_dates(phase_2_datetime, current_datetime)
 
+
+checkPhase(link_calendar_game8)
