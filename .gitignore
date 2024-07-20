@@ -1,2 +1,2 @@
 chromedriver/*
-convert_ui_to_py/utils/__pycache__/*
+__pycache__/

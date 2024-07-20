@@ -16,7 +16,7 @@ def send_message(text):
 
 # get ping of server
 def ping(server='example.com', count=1, wait_sec=1):
-    cmd = "ping -c {} -W {} {}".format(count, wait_sec, server).split(' ')
+    cmd = "ping -n {} -w {} {}".format(count, wait_sec, server).split(' ')
     try:
         output = subprocess.check_output(cmd).decode().strip()
         lines = output.split("\n")
