@@ -1,0 +1,59 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    margin: 0;
+    height: auto;
+    background: transparent;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: black;
+    color: white;
+
+    &:has(.btn_19 input:checked) {
+        background-color: white;
+        color: black;
+        & #btn{
+            color: black;
+        }
+        & .button_2, .eye_button_2:before{
+            background-color: white;
+        }
+        & .eye_button_2{
+            background-color: black;
+        }
+    }
+}
+
+h1 {
+    font-size: 50px;
+    margin-bottom: 50px;
+}
+
+aside {
+    display: flex;
+    justify-content: center;
+}
+
+
+.no-select {
+    -webkit-user-select: none;
+    /* Safari */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Standard syntax */
+}

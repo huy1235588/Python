@@ -1,0 +1,401 @@
+
+/*****************************************************
+        .btn_20
+Link: https://uiverse.io/barisdogansutcu/bitter-dragon-16
+*****************************************************/
+.button_2 {
+    cursor: inherit;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    border: solid 4px rgba(255, 255, 255, 0);
+    /* background-color: hsl(300, 10%, 8%); */
+    background-color: hsl(0, 0%, 0%);
+    font-size: 20px;
+    color: white;
+    border-radius: 50px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 100px;
+}
+
+/* .button_2:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    -webkit-transform: translateY(-100%);
+    -ms-transform: translateY(-100%);
+    transform: translateY(-100%);
+    width: 0;
+    height: 0;
+    border-top: solid 10px rgba(255, 0, 0, 0);
+    border-bottom: solid 10px hsl(300, 10%, 8%);
+    border-right: solid 10px rgba(255, 0, 0, 0);
+    border-left: solid 10px rgba(255, 0, 0, 0);
+} */
+
+.button_2.up_button_2 {
+    z-index: 2;
+}
+
+.click_button_2 .button_2 .speak_button_2:nth-child(n + 2) {
+    display: none;
+}
+
+.button_2:hover,
+.click_button_2 span:nth-child(5):hover~.button_2,
+.click_button_2 span:nth-child(6):hover~.button_2 {
+    left: 100%;
+    top: 0;
+    -webkit-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    transform: translateX(-100%);
+}
+
+.button_2:hover,
+.click_button_2 span:nth-child(5):hover~.button_2 .speak_button_2:is(.dblink, .rblink),
+.click_button_2 span:nth-child(6):hover~.button_2 .speak_button_2:is(.dblink, .rblink) {
+    display: none !important;
+}
+
+.button_2:hover,
+.click_button_2 span:nth-child(5):hover~.button_2 .speak_button_2:is(.doblink),
+.click_button_2 span:nth-child(6):hover~.button_2 .speak_button_2:is(.doblink) {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+}
+
+.button_2:hover,
+.click_button_2 span:nth-child(2):hover~.button_2,
+.button_2:hover,
+.click_button_2 span:nth-child(3):hover~.button_2 {
+    left: 0%;
+    top: 0;
+    -webkit-transform: translateX(0%);
+    -ms-transform: translateX(0%);
+    transform: translateX(0%);
+}
+
+.button_2:hover,
+.click_button_2 span:nth-child(2):hover~.button_2 .speak_button_2:is(.dblink, .hihi),
+.click_button_2 span:nth-child(3):hover~.button_2 .speak_button_2:is(.dblink, .hihi) {
+    display: none !important;
+}
+
+.button_2:hover,
+.click_button_2 span:nth-child(2):hover~.button_2 .speak_button_2:is(.rblink),
+.click_button_2 span:nth-child(3):hover~.button_2 .speak_button_2:is(.rblink) {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+}
+
+.button_2:hover,
+.click_button_2 span:nth-child(1):hover~.button_2,
+.button_2:hover,
+.click_button_2 span:nth-child(4):hover~.button_2 {
+    top: 100%;
+    left: 0;
+    -webkit-transform: translateY(-100%);
+    -ms-transform: translateY(-100%);
+    transform: translateY(-100%);
+}
+
+.button_2:hover,
+.click_button_2 span:nth-child(1):hover~.button_2 .speak_button_2:is(.dblink, hihi, rblink),
+.click_button_2 span:nth-child(4):hover~.button_2 .speak_button_2:is(.dblink, hihi, rblink) {
+    display: none !important;
+}
+
+.button_2:hover,
+.click_button_2 span:nth-child(1):hover~.button_2 .speak_button_2:is(.ublink),
+.click_button_2 span:nth-child(4):hover~.button_2 .speak_button_2:is(.ublink) {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+}
+
+.click_button_2 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0px;
+    position: absolute;
+    top: 0;
+    border-radius: 5px;
+}
+
+.click_button_2 span {
+    width: 80px;
+    height: 80px;
+    background-color: transparent;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.shadow_button_2 {
+    color: transparent;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    z-index: 1;
+    pointer-events: none;
+    -webkit-filter: blur(14px);
+    filter: blur(14px);
+    background-color: hsla(240, 24%, 12%, 0.384);
+}
+
+.speak_button_2{
+    font-size: 15px;
+}
+
+.warp_button_2 {
+    position: relative;
+    width: 100px;
+    height: 40px;
+    margin: 0 2rem;
+    color: black;
+    line-height: 40px;
+    font-size: 2rem;
+    text-align: center;
+    font-weight: 400;
+    margin-bottom: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 5px;
+}
+
+.eye_button_2 {
+    position: relative;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    background: #ffffff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: inline-block;
+    -webkit-animation: double-blink 4s cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+    animation: double-blink 4s cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+    overflow: hidden;
+}
+
+@-webkit-keyframes double-blink {
+
+    0%,
+    8% {
+        height: 40px;
+    }
+
+    10%,
+    12% {
+        height: 10px;
+    }
+
+    13% {
+        height: 40px;
+    }
+
+    14%,
+    16% {
+        height: 0;
+    }
+
+    18%,
+    100% {
+        height: 40px;
+    }
+}
+
+@keyframes double-blink {
+
+    0%,
+    8% {
+        height: 40px;
+    }
+
+    10%,
+    12% {
+        height: 10px;
+    }
+
+    13% {
+        height: 40px;
+    }
+
+    14%,
+    16% {
+        height: 0;
+    }
+
+    18%,
+    100% {
+        height: 40px;
+    }
+}
+
+.eye_button_2:before {
+    content: "";
+    position: absolute;
+    margin: auto;
+    width: 10px;
+    height: 10px;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 50%;
+    background: rgba(20, 20, 20, 1);
+}
+
+.down_button_2:before {
+    -webkit-animation: downb 4s cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+    animation: downb 4s cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+}
+
+@-webkit-keyframes downb {
+
+    0%,
+    10% {
+        top: 0;
+        left: -10px;
+    }
+
+    20%,
+    40% {
+        top: 50%;
+        left: -10px;
+    }
+
+    50%,
+    100% {
+        top: 0;
+        left: -10px;
+    }
+}
+
+@keyframes downb {
+
+    0%,
+    10% {
+        top: 0;
+        left: -10px;
+    }
+
+    20%,
+    40% {
+        top: 50%;
+        left: -10px;
+    }
+
+    50%,
+    100% {
+        top: 0;
+        left: -10px;
+    }
+}
+
+.right-blink:before {
+    -webkit-animation: rightb 4s cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+    animation: rightb 4s cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+}
+
+@-webkit-keyframes rightb {
+
+    0%,
+    10% {
+        top: 0;
+        left: 50%;
+    }
+
+    20%,
+    40% {
+        top: 50%;
+        left: 50%;
+    }
+
+    50%,
+    100% {
+        top: 0;
+        left: 50%;
+    }
+}
+
+@keyframes rightb {
+
+    0%,
+    10% {
+        top: 0;
+        left: 50%;
+    }
+
+    20%,
+    40% {
+        top: 50%;
+        left: 50%;
+    }
+
+    50%,
+    100% {
+        top: 0;
+        left: 50%;
+    }
+}
+
+.up-blink:before {
+    -webkit-animation: upb 4s cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+    animation: upb 4s cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+}
+
+@-webkit-keyframes upb {
+
+    0%,
+    10% {
+        top: 0;
+        left: 0%;
+    }
+
+    20%,
+    40% {
+        top: -50%;
+        left: 0%;
+    }
+
+    50%,
+    100% {
+        top: 0;
+        left: 0%;
+    }
+}
+
+@keyframes upb {
+
+    0%,
+    10% {
+        top: 0;
+        left: 0%;
+    }
+
+    20%,
+    40% {
+        top: -50%;
+        left: 0%;
+    }
+
+    50%,
+    100% {
+        top: 0;
+        left: 0%;
+    }
+}

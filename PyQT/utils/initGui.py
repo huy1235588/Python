@@ -176,20 +176,34 @@ class GUI:
             server=self.ui.ipv4_primary_line_edit.text())
         secondary_ping = functions.ping(
             server=self.ui.ipv4_secondary_line_edit.text())
+        primary_ipv6_ping = functions.ping6(
+            server=self.ui.ipv6_primary_line_edit.text())
+        secondary_ipv6_ping = functions.ping6(
+            server=self.ui.ipv6_secondary_line_edit.text())
         if primary_ping:
             primary_ping = int(float(primary_ping['avg']))
+        if primary_ipv6_ping:
+            primary_ipv6_ping = int(float(primary_ipv6_ping['avg']))
         else:
             print("Not found")
+            # primary_ping = False
+            # primary_ipv6_ping = False
         if secondary_ping:
             secondary_ping = int(float(secondary_ping['avg']))
+        if secondary_ipv6_ping:
+            secondary_ipv6_ping = int(float(secondary_ipv6_ping['avg']))
         else:
             print("Not found")
+            # secondary_ping = False
+            # secondary_ipv6_ping = False
 
-        self.send_status_bar_message('{} => primary: {} | secondary: {}'.format(
+        self.send_status_bar_message('{} => Primary: {} | Secondary: {} | IPv6 Primary: {} | IPv6 Secondary: {}'.format(
             self.data.data['dns_list'][self.data.data['settings']
                                        ['dns']]['name'],
             primary_ping,
-            secondary_ping
+            secondary_ping,
+            primary_ipv6_ping,
+            secondary_ipv6_ping
         ))
 
     # Check if ip is valid
