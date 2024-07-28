@@ -12,7 +12,7 @@ app.use(express.static('public'));
 app.post('/save', (req, res) => {
     const data = req.body;
 
-    fs.writeFile('e://Project//Python//calendar//json//ha.json', JSON.stringify(data, null, 2), (err) => {
+    fs.writeFile('D://Project//Python//calendar//json//ha.json', JSON.stringify(data, null, 2), (err) => {
         if (err) {
             console.error(err);
             return res.status(500).send('Error writing to file');

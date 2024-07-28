@@ -6,7 +6,8 @@ button.addEventListener('click', function () {
 
     const data = {
         varrient: "true",
-        timestamp: String(Math.floor(new Date().getTime() / 1000))
+        timestamp: new Date().toLocaleDateString(),
+        elapse_date: "0"
     };
 
     fetch('/save', {

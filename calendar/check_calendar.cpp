@@ -6,5 +6,6 @@ int main()
 
     checkPhase(link_calendar_game8);
 
+    system("pause");
     return 0;
 }

@@ -7,7 +7,7 @@
 #include <iomanip>     // định dạng đầu ra
 
 // #include "interact_with_string.h"
-#include "read_file_json.h"
+#include "read_and_write_file_json.h"
 
 // Function to write the response data to a string
 size_t WriteCallback(void *contents, size_t size, size_t nmemb, std::string *s)
@@ -249,29 +249,52 @@ void checkPhase(const std::string &url)
         std::time_t phase2Date = convertToTimeT(phase2DateStr, "%B %d, 20%y");
         std::time_t currentDateTime = convertToTimeT(currentDateTimeStr, "%A %d %B %Y");
 
+        // So sánh 2 ngày
         double elapse_date = compareDates(phase2Date, currentDateTime);
-        std::cout << phase2Date << "\t" << currentDateTime << std::endl;
-
-        
-        const char *file_json = "json/ha.json";
-        std::string ha = read_file_json(file_json, "timestamp");
 
         if (elapse_date >= 40)
         {
-            const char *filePathHTML = "e:/Project/Python/calendar/web/public/index.html";
-            // Chuyển elapse_date từ double sang string
-            std::string elapse_date_str = std::to_string(elapse_date);
-            elapse_date_str = elapse_date_str.substr(0, elapse_date_str.find('.')); // Lấy phần trước dấu chấm
+            // File json path
+            const char *file_json = "json/ha.json";
 
-            phase2DateStr = split(phase2DateStr, '-', 0);
+            // Lấy varrient từ file json
+            std::string varrient = read_file_json(file_json, "varrient");
 
-            // Chỉnh sửa file html
-            replace_content_HTML(filePathHTML, "span", "id", "passed_day", elapse_date_str);
-            replace_content_HTML(filePathHTML, "span", "id", "relative", phase2DateStr);
+            if (varrient == "true")
+            {
+                // Lấy timeStamp từ file json
+                std::string timeStamp = read_file_json(file_json, "timestamp");
 
-            // Mở file html
-            // system("start http://192.168.1.13:3000");
-            // system("e: && cd web && node server.js");
+                // Chuyển timeStamp sang time_T
+                std::time_t timeStampDate = convertToTimeT(timeStamp, "%m/%d/20%y");
+
+                // So sánh TimeStampDate và currentDateTime
+                elapse_date = compareDates(timeStampDate, currentDateTime);
+
+                if (elapse_date == 2 && elapse_date == 4)
+                {
+                    std::cout << elapse_date << "\t" << varrient << std::endl;
+                }
+            }
+
+            else
+            {
+                const char *filePathHTML = "d:/Project/Python/calendar/web/public/index.html";
+
+                // Chuyển elapse_date từ double sang string
+                std::string elapse_date_str = std::to_string(elapse_date);
+                elapse_date_str = elapse_date_str.substr(0, elapse_date_str.find('.')); // Lấy phần trước dấu chấm
+
+                phase2DateStr = split(phase2DateStr, '-', 0);
+
+                // Chỉnh sửa file html
+                replace_content_HTML(filePathHTML, "span", "id", "passed_day", elapse_date_str);
+                replace_content_HTML(filePathHTML, "span", "id", "relative", phase2DateStr);
+
+                // Mở file html
+                // system("start http://192.168.1.13:3000");
+                // system("e: && cd web && node server.js");
+            }
         }
     }
 }
