@@ -1,2 +1,4 @@
 chromedriver/*
 __pycache__/
+string/txt
+google_drive/json
