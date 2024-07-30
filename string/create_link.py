@@ -16,7 +16,7 @@ def read_file_to_list(file_path):
 
 
 def convert_urls(url):
-    codes = read_file_to_list("txt/codes.txt")
+    codes = read_file_to_list("string/txt/codes2.txt")
     new_urls = []
     for code in codes:
         new_url = url + code
@@ -24,10 +24,10 @@ def convert_urls(url):
     return new_urls
 
 
-url = "" #Link URl here
+url = "https://njav.tv/vi/v/" #Link URl here
 
 list_link = convert_urls(url)
 
-with open ("txt/new_link.txt", "w") as file:
+with open ("string/txt/new_link.txt", "w") as file:
     for link in list_link:
         file.write(link + "\n")
